@@ -1,0 +1,6 @@
+CMakeLists.txt
+builds/*.o
+bin/LiteSH
+bin/server
+cmake-build-debug
+.idea
