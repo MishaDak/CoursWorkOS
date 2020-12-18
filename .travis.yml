@@ -2,4 +2,8 @@ language: c++
 dist: xenial
 os: linux
 compiler: gcc
+<<<<<<< HEAD
 script: make && git ls-files src/ && git diff --exit-code
+=======
+script: make && git ls-files src/ && git diff --exit-code
+>>>>>>> a2e70a811c496edb833ddbc8212a6a97573152dd
