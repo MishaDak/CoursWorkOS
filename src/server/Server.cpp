@@ -17,7 +17,7 @@ int main() {
     // структура для сервера
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY; // 0.0.0.0
-    server.sin_port = htons(2018); // порт сервера
+    server.sin_port = htons(2021); // порт сервера
 
     bind(sock, (struct sockaddr*)&server, sizeof(server)); // связка с сокетом
     listen(sock,5); // размер очереди
@@ -48,7 +48,11 @@ int main() {
                 strcpy(buf, "5");
                 work = 0;
                 send(newsock,buf,sizeof(buf),0);
-            } else {
+            } else if (strcmp(buf, "manageFile") == 0){
+                strcpy(buf, "6");
+                send(newsock, buf, sizeof(buf), 0);
+            }
+            else {
                 strcpy(buf, "unknown command");
                 send(newsock, buf, sizeof(buf), 0);
             }

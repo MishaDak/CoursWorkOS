@@ -67,7 +67,7 @@ int NetWorkClient(char *command) {
     struct sockaddr_in server;
 
     server.sin_family = AF_INET;
-    server.sin_port = htons(2018);
+    server.sin_port = htons(2021);
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
     int sock = socket(AF_INET,SOCK_STREAM,0);// создаём сокет
 

@@ -6,14 +6,23 @@ FLAG := -std=c11
 
 all: bin/LiteSH
 
-bin/LiteSH: builds/main.o builds/LiteSH.o
-	$(CC) builds/main.o builds/LiteSH.o -I./home/misha/Labs/Operation-System/LiteSH/libs/libinfo.so -ldl -o bin/LiteSH
+#bin/LiteSH: builds/main.o builds/LiteSH.o builds/commands.o builds/main1.o
+#	$(CC) builds/main.o builds/LiteSH.o builds/main1.o builds/commands.o -o bin/LiteSH
 
-builds/main.o: src/main.cpp
-	$(CC) -c src/main.cpp -o builds/main.o
+bin/LiteSH: builds/main.o builds/LiteSH.o builds/commands.o builds/main1.o
+	$(CC) builds/main.o builds/LiteSH.o builds/main1.o builds/commands.o -I./home/misha/Labs/CoursWorkOS/libs/libinfo.so -ldl -o bin/LiteSH
 
-builds/LiteSH.o: src/LiteSH.cpp
-	$(CC) -c src/LiteSH.cpp -o builds/LiteSH.o
+builds/main.o: src/client/main.cpp
+	$(CC) -c src/client/main.cpp -o builds/main.o
+
+builds/LiteSH.o: src/client/LiteSH.cpp
+	$(CC) -c src/client/LiteSH.cpp -o builds/LiteSH.o
+
+builds/main1.o: src/client/main1.cpp
+	$(CC) -c src/client/main1.cpp -o builds/main1.o
+
+builds/commands.o: src/client/commands.cpp
+	$(CC) -c src/client/commands.cpp -o builds/commands.o
 
 clean:
 	find -name "*.o" -exec rm -rf {} +

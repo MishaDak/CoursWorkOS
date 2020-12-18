@@ -2,12 +2,13 @@
 #include <cstring>
 #include <dlfcn.h>
 #include "LiteSH.hpp"
+#include "manage.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
     char *error;
-    void *handle = dlopen("/home/misha/Labs/Operation-System/LiteSH/libs/libinfo.so", RTLD_LAZY);
+    void *handle = dlopen("/home/misha/Labs/CoursWorkOS/libs/libinfo.so", RTLD_LAZY);
     if (!handle) {
         fputs (dlerror(), stderr);
         exit (-1);
@@ -15,7 +16,7 @@ int main(int argc, char **argv) {
 
     if ((error = dlerror()) != NULL) {
         fprintf (stderr, "%s\n", error);
-        exit (-1);;
+        exit (-1);
     }
 
 //    if (RecvSignal(SIGINT) == 1) {
@@ -70,6 +71,12 @@ int main(int argc, char **argv) {
     } else if (selection == 4) {
         info();
     } else if (selection == 5) {
+    } else if (selection == 6) {
+        char *name = new char[100];
+        cout << "Write Process name: " << endl;
+        cin >> name;
+        main1(name);
+        delete[]name;
     }
     dlclose(handle);
     return 0;
